@@ -52,14 +52,29 @@ const Keyboard = () => {
     '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚', '🕛', '🕜', '🕝',
     '🕞', '🕟', '🕠', '🕡', '🕢', '🕣', '🕤', '🕥', '🕦', '🕧'
   ];
+  const fontFamilies = [
+    'Arial', 'Times New Roman', 'Courier New', 'Verdana', 'Georgia', 'Palatino', 'Garamond', 'Bookman', 'Comic Sans MS', 'Trebuchet MS', 'Arial Black', 'Impact'
+  ];
+
   
   const [keys, setKeys] = useState(uppercase);
   const [textVal, setTextVal] = useState("");
+  const [fontWeight, setFontWeight] = useState("");
+  const [fontSize, setFontSize] = useState(16);
+  const [fontFamilyIndex, setFontFamilyIndex] = useState(0);
+  const [color, setColor] = useState('black');
+  
+  const textStyle = {
+    fontWeight: fontWeight,
+    fontSize: `${fontSize}px`,
+    fontFamily: fontFamilies[fontFamilyIndex],
+    color: color
+  };
 
   return (
     <div>
       <div className="keyboard">
-        <textarea type="text" value={textVal} readOnly />
+        <textarea type="text" value={textVal} readOnly style={textStyle}/>
       </div>
       <div>
         {keys.map((key, i) => (
@@ -71,19 +86,19 @@ const Keyboard = () => {
       <button onClick={() => setTextVal(textVal + " ")}>space</button>
       <button onClick={() => setTextVal(textVal.slice(0, -1))}>delete</button>
       <br />
-      <button>🔼</button>
-      <button>🅰️➕</button>
-      <button>🅰️➖</button>
-      <button>🅱️</button>
+      <button onClick={() => setFontFamilyIndex((fontFamilyIndex+1)%fontFamilies.length)}>{fontFamilies[fontFamilyIndex]}</button>
+      <button onClick={() => setFontSize(fontSize+2)}>🅰️➕</button>
+      <button onClick={() => setFontSize(fontSize-2)}>🅰️➖</button>
+      <button onClick={() => {fontWeight === "bold" ? setFontWeight("") : setFontWeight("bold")}}>🅱️</button>
       <br />
-      <button>🟥</button>
-      <button>🟧</button>
-      <button>🟨</button>
-      <button>🟩</button>
-      <button>🟦</button>
-      <button>🟪</button>
-      <button>⬛️</button>
-      <button>🟫</button>
+      <button onClick={() => setColor("red")}>🟥</button>
+      <button onClick={() => setColor("orange")}>🟧</button>
+      <button onClick={() => setColor("yellow")}>🟨</button>
+      <button onClick={() => setColor("green")}>🟩</button>
+      <button onClick={() => setColor("blue")}>🟦</button>
+      <button onClick={() => setColor("purple")}>🟪</button>
+      <button onClick={() => setColor("black")}>⬛️</button>
+      <button onClick={() => setColor("brown")}>🟫</button>
 
       <br />
       <button onClick={() => setTextVal("")}>clear</button>
