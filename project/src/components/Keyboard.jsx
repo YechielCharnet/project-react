@@ -1,17 +1,10 @@
 import React, { useState } from "react";
 
 const Keyboard = () => {
-  const uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
-  const lowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
-
-
-  const hebrew =  ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י', 'כ', 'ל', 'מ', 'נ', 'ס', 'ע', 'פ', 'צ', 'ק', 'ר', 'ש', 'ת', 'ך', 'ם', 'ן', 'ף', 'ץ'];
-
+  const uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','!', '@', '&', '(', ')', '-', ';', ':', '"', "'", ',', '.','/', '?'];
+  const lowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z','!', '@', '&', '(', ')', '-', ';', ':', '"', "'", ',', '.','/', '?'];
+  const hebrew =  ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י', 'כ', 'ל', 'מ', 'נ', 'ס', 'ע', 'פ', 'צ', 'ק', 'ר', 'ש', 'ת', 'ך', 'ם', 'ן', 'ף', 'ץ','!', '@', '&', '(', ')', '-', ';', ':', '"', "'", ',', '.','/', '?'];
   const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '[', ']', '{', '}', '|', ';', ':', '"', "'", ',', '.', '<', '>', '/','`', '?'];
-
-
   const emojis = [
     '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇',
     '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚',
@@ -59,21 +52,21 @@ const Keyboard = () => {
     '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚', '🕛', '🕜', '🕝',
     '🕞', '🕟', '🕠', '🕡', '🕢', '🕣', '🕤', '🕥', '🕦', '🕧'
   ];
-
+  
   const [keys, setKeys] = useState(uppercase);
   const [textVal, setTextVal] = useState("");
 
   return (
     <div>
       <div className="keyboard">
-        <textarea type="text" value={textVal} />
+        <textarea type="text" value={textVal} readOnly />
       </div>
       <div>
         {keys.map((key, i) => (
           <button key={i} onClick={() => setTextVal(textVal + key)}>
             {key}
           </button>
-        ))}
+      ))}
       </div>
       <button onClick={() => setTextVal(textVal + " ")}>space</button>
       <button onClick={() => setTextVal(textVal.slice(0, -1))}>delete</button>
